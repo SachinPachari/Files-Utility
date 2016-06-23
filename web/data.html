@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery-cookie.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	var selectedFilePath = $.cookie('g_pageData');
+	console.log("loaded the document"+selectedFilePath);
+	var pageData;
+
+	var ip = location.host;
+
+	$.ajax({
+		type : "POST",
+		url : "http://" + ip + "/SharedDriveApp/rest/file/getFile",
+		// dataType : "json",
+		headers : {
+			"Content-Type" : "application/json"
+		},
+		async : false,
+		data : selectedFilePath,
+	}).done(function(data) {
+		pageData = data;
+		console.log(pageData);
+	}).fail(function(error) {
+		console.log("Error in request");
+		console.log(error);
+	});
+
+	$('html').append(pageData);
+});
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>
