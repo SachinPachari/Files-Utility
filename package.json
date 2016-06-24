@@ -1,0 +1,11 @@
+{
+    "name": "files-utility",
+    "version": "1.0.0",
+    "description": "File sharing and serving through http protocol.",
+    "author": "Sachin <sachin.fishersam@gmail.com>",
+    "dependencies": {
+        "walk": "2.3.x",
+        "express": "4.2.x"
+    },
+    "private": true
+}
