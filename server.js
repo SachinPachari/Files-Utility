@@ -13,7 +13,6 @@ function fileSender(request, response) {
 }
 
 function listJSON (request, response) {
-	console.info(request.params);
 	var listFiles = require('./NodeServer/listFiles');
 	var dir = path.join(__dirname, '/dummydata');
 	listFiles(dir, response);

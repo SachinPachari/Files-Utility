@@ -1,35 +1,56 @@
 function listFiles(rootDir, response) {
 	// body...
 	var walk = require('walk'),
+        path = require('path'),
 		files   = [];
 
 	var walker  = walk.walk(rootDir, { followLinks: false });
-	var dirCount = 1;
+	var dirCount = 0;
+    var fileCount = 
+    
 	walker.on('directory', function (root, dirStatsArray, next) {
-		// var obj = {path:root, name: dirStatsArray.name, type:stat.type};
 		var obj = {
-			path:root, 
-			name: dirStatsArray.name, 
-			type: dirStatsArray.type,
-			isParent:true
-		};
+            path:root, 
+            name: dirStatsArray.name,
+            fullPath: path.join(root, dirStatsArray.name),
+            type: dirStatsArray.type,
+            isParent:true
+        };
+        obj.id = (++dirCount)+'';
 		files.push(obj);
 		next();
 	});
 	walker.on('file', function(root, stat, next) {
 		// Add this file to the list of files
-		var fullPath = root + '/' + stat.name;
-		var obj = {path:root, name: stat.name, type:stat.type};
+		var fullPath = path.join(root, stat.name);
+		var obj = {path:root, name: stat.name, type:stat.type, fullPath: fullPath};
+        obj.id = (++dirCount)+'';
 		files.push(obj);
 		next();
 	});
 	walker.on('end', function() {
-		files.forEach(function(f, index){
-			console.info(f.id, f.path);
-
-		});
+        files = makeJSON(files);
 		response.send(files);
 	});
+    
+    function makeJSON (files) {
+        files.forEach(function (f, index) {
+            var parent = getParent(f);
+            if(parent === undefined || parent.id === undefined){
+                return;
+            }
+            f.pId = parent.id;
+        });
+        return files;
+    }
+    function getParent (f) {
+        for(var i = 0, length = files.length; i < length; i++){
+            if(files[i].fullPath === f.path){ 
+                return files[i];
+            }
+        }
+        return;
+    }
 }
 
 module.exports = listFiles;
