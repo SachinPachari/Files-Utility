@@ -25,10 +25,10 @@ var ip = location.host;
 var pageData;
 
 function onMouseDown(event, treeId, treeNode) {
-	// console.log('child--->'+treeNode.name+'-->'+treeNode.actualPath);
+	// console.log('child--->'+treeNode.name+'-->'+treeNode.fullPath);
 	if (treeNode != null) {
-		if (treeNode.isParent == false && treeNode.actualPath != null) {
-			selectedFilePath = treeNode.actualPath;
+		if (treeNode.isParent == false && treeNode.fullPath != null) {
+			selectedFilePath = treeNode.fullPath;
 			$('#loadFile').prop('disabled', false);
 		} else {
 			$('#loadFile').prop('disabled', true);
