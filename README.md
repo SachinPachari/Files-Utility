@@ -1,5 +1,8 @@
 # Files-Utility
 
+Dependancies:
+npm, node, git.
+
 Still a work in progress.
 
 If still interested, just follow the below steps.
