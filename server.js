@@ -1,11 +1,19 @@
 var express = require('express'),
 	app = express(),
 	fs = require('fs'),
-	path = require('path');
+	path = require('path'),
+    mime = require('mime');
 
 function fileDownloader(request, response) {
     var name = request.params.file;
+//    console.info(request.body);
+//    var filePath = request.body.file;
     var filePath = path.join(__dirname, '/dummydata', name);
+    
+    var filename = path.basename(filePath);
+    var mimetype = mime.lookup(filePath);
+    response.setHeader('Content-disposition', 'attachment; filename=' + filename);
+    response.setHeader('Content-type', mimetype);
     response.download(filePath);
 //	fileFinder(__dirname, filePath, response);
 }

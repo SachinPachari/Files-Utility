@@ -5,7 +5,8 @@
     "author": "Sachin <sachin.fishersam@gmail.com>",
     "dependencies": {
         "walk": "2.3.x",
-        "express": "4.2.x"
+        "express": "4.2.x",
+        "body-parser": "^1.8.1"
     },
     "private": true
 }

@@ -1,4 +1,6 @@
+/* global require, module */
 function listFiles(rootDir, response) {
+    'use strict';
 	// body...
 	var walk = require('walk'),
         path = require('path'),
@@ -6,7 +8,6 @@ function listFiles(rootDir, response) {
 
 	var walker  = walk.walk(rootDir, { followLinks: false });
 	var dirCount = 0;
-    var fileCount = 
     
 	walker.on('directory', function (root, dirStatsArray, next) {
 		var obj = {
@@ -40,6 +41,9 @@ function listFiles(rootDir, response) {
                 return;
             }
             f.pId = parent.id;
+        });
+        files.forEach(function (f, index) {
+            f.fullPath = f.fullPath.replace(rootDir, '');
         });
         return files;
     }
