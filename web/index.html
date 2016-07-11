@@ -5,6 +5,12 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
 <style type="text/css">
+
+/*.pagerLink
+{
+    text-decoration:none !important;
+}*/
+
 .sample {
 	width: 50%;
 	height: 400px;
@@ -50,13 +56,15 @@ body {
 		</div>
 		<br>
 		<div class="container" style="width: 50%">
-            <button id="loadFile" class="btn btn-primary pull-right" disabled="true">Load File</button>
-            <button id="downloadFile" class="btn btn-primary pull-left" alt="media" disabled="true">Download</button>
+            <!-- <button id="loadFile" class="btn btn-primary pull-right" disabled="true">Load File</button> -->
+            <a id="downloadFile" class="btn btn-primary pull-right disabled" href="#" role="button">Download</a>
         </div>
 	</div>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/jquery-cookie.js"></script>
     <script type="text/javascript" src="js/jquery.ztree.core-3.5.js"></script>
+    <script type="text/javascript" src="js/ajax-hepler.js"></script>
+    <script type="text/javascript" src="js/ztree-helper.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" language="javascript"
         src="js/bootstrap.js"></script>
