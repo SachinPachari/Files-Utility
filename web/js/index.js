@@ -5,6 +5,7 @@ var module = (function(){
 
     module.initialize = function () {
         this.loadName();
+        // $('#downloadFile').click(download);
         ajaxModule.getFileList().done(function(data){
             zTreeModule.initialize('treeDemo', data);
         });

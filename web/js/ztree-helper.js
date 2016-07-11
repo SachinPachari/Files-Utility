@@ -2,6 +2,8 @@ var zTreeModule = (function () {
     'use strict';
     var zTreeModule = {};
     zTreeModule.zTree = {};
+    zTreeModule.selectedNode = {};
+    zTreeModule.selectedFilePath = '';
     zTreeModule.setting = {
         view: {
             showLine: false
@@ -26,9 +28,9 @@ var zTreeModule = (function () {
         if(treeNode === null){
             return;
         }
-        selectedNode = treeNode;
-        selectedFilePath = module.isValidFile(treeNode);
-        module.enableButtons(selectedFilePath);
+        this.selectedNode = treeNode;
+        this.selectedFilePath = module.isValidFile(treeNode);
+        module.enableButtons(this.selectedFilePath);
         module.updateDownLoadButton(treeNode);
     };
     
