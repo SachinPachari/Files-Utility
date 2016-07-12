@@ -1,3 +1,8 @@
 {
-	"path": "C:\\Users\\SachinPS\\MeanSample\\Share Drive\\Files Utility\\Files-Utility\\dummydata"
+    "_comment_name": "The below value is used for display in the screen. if left empty, then the path will be used.",
+	"name": "Dummy",
+    
+    "_comment_path": "The below path will be used as root for the application share directory, removing this or providing an invalid path will make the applicatioin take the default path the dummydata directory in the application.(sample path : C:\\Users\\SachinP\\Desktop\\junk)",
+    "path": "C:\\Users\\SachinP\\Desktop\\junk"
+    
 }

@@ -25,7 +25,7 @@ var ajaxModule = (function () {
             url : 'http://' + location.host + '/list',
             dataType : 'json',
             // headers: {"Content-Type":"application/json"},
-            async : false,
+            async : true,
         }).done(function(data) {
             deferred.resolve(data);
         }).error(function(err){
@@ -41,7 +41,6 @@ var ajaxModule = (function () {
         $.ajax({
             type : 'GET',
             url : 'http://' + ip + '/app-desc',
-            // async : true,
         }).done(function(data) {
             deferred.resolve(data);
         }).error(function (err) {

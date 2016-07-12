@@ -39,22 +39,24 @@ function getFolderPath () {
     var propertiesFile = fs.readFileSync("properties.json");
     var properties = JSON.parse(propertiesFile);
     if(properties !== undefined && properties.path !== undefined){
-        if(doesFileExist(properties.path)){
-            folderPath = properties.path;
-            return folderPath;     
-        }
+       doesFileExist(properties.path).then(function () {
+           folderPath = properties.path;
+           return folderPath;     
+       }, function () {
+           folderPath = path.join(__dirname, '/dummydata');
+           return folderPath;
+       });
     }
-    folderPath = path.join(__dirname, '/dummydata');
-    return folderPath;
+
 }
 
 function doesFileExist (path) {
-    fs.stat(path, function(err, stat) {
-        if(err == null) {
-            return true;
-        } 
-        return false;
-    });
+    return new Promise(function (fulfill, reject){
+        fs.stat(path, function(err, stat) {
+          if (err) reject(err);
+          else fulfill(stat);
+        });
+      });
 }
 
 app.get('/app-desc', folderPathUsed);
@@ -63,5 +65,5 @@ app.get('/api-download', fileDownloader);
 app.get('/api-send/:file', fileSender);
 // use web folder as static supply of files..
 app.use('/', express.static(__dirname + '/web'));
-
+getFolderPath();
 app.listen(2000);
